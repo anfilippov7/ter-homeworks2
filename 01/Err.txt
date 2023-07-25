@@ -1,0 +1,8 @@
+╷
+│ Error: can't convert vbox network to terraform data: No match with get guestproperty output
+│ 
+│   with virtualbox_vm.vm1,
+│   on main.tf line 15, in resource "virtualbox_vm" "vm1":
+│   15: resource "virtualbox_vm" "vm1" {
+│ 
+╵
