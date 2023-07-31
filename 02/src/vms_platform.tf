@@ -37,12 +37,6 @@ variable "vm_web_family" {
   description = "ubuntu release name"
 }
 
-variable "vm_web_name" {
-  type        = string
-  default     = "netology-develop-platform-web"
-  description = "name platform web"
-}
-
 variable "vm_web_platform_id" {
   type        = string
   default     = "standard-v3"
@@ -91,12 +85,6 @@ variable "vm_db_family" {
   type        = string
   default     = "ubuntu-2004-lts"
   description = "ubuntu release name"
-}
-
-variable "vm_db_name" {
-  type        = string
-  default     = "netology-develop-platform-db"
-  description = "name platform db"
 }
 
 variable "vm_db_platform_id" {
