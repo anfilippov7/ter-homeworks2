@@ -5,6 +5,7 @@ data "yandex_compute_image" "ubuntu" {
 resource "yandex_compute_instance" "web" {
   count       = 2
   name        = "${var.name_vm}-${count.index + 1}"
+#  name        = "${var.name_vm}"
   platform_id = var.vm_web_platform_id
   resources {
     cores         = 2
@@ -23,13 +24,11 @@ boot_disk {
   network_interface {
     subnet_id = yandex_vpc_subnet.develop.id
     nat       = true
+    security_group_ids = [yandex_vpc_security_group.example.id]
   }
 
   metadata = {
-    serial-port-enable = 1
-    ssh-keys           = "ubuntu:${var.vms_ssh_root_key}"
+    serial-port-enable = var.serial_port_enable
+    ssh-keys           = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
-
-#  security_group_id = lookup(each.value, "security_group_name", null) != null ? data.yandex_vpc_security_group.ingress[each.key].id : each.value["security_group_id"]
-
 }
