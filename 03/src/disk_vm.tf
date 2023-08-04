@@ -1,13 +1,11 @@
 resource "yandex_compute_disk" "empty-disk" {
   count      = 3
   name       = "empty-disk-${count.index + 1}"
-#  name       = "empty-disk"  
   type       = "network-hdd"
   zone       = "ru-central1-a"
   size       = 1
   block_size = 4096
 }
-
 
 data "yandex_compute_image" "ubuntu3" {
   family = var.vm_web_family
@@ -29,14 +27,10 @@ resource "yandex_compute_instance" "storage" {
     }
   }
 
-#  secondary_disk {
-#    disk_id = yandex_compute_disk.empty-disk.id  
-#    }
-
-  dynamic secondary_disk {
+  dynamic "secondary_disk" {
     for_each = yandex_compute_disk.empty-disk
     content{
-        disk_id = yandex_compute_disk.empty-disk[length([yandex_compute_disk.empty-disk])+1].id    
+      disk_id = secondary_disk.value["id"]
     } 
   }
   

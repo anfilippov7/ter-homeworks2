@@ -4,8 +4,10 @@ data "yandex_compute_image" "ubuntu2" {
 resource "yandex_compute_instance" "web2" {
   depends_on = [yandex_compute_instance.web, yandex_compute_instance.storage]
   for_each = {
-    "main" = [var.vms_resources["vm_main_resources"]["cores"], var.vms_resources["vm_main_resources"]["memory"], var.vms_resources["vm_main_resources"]["core_fraction"], var.vms_resources["vm_main_resources"]["size"]]
-    "replica" = [var.vms_resources["vm_replica_resources"]["cores"], var.vms_resources["vm_replica_resources"]["memory"], var.vms_resources["vm_replica_resources"]["core_fraction"], var.vms_resources["vm_replica_resources"]["size"]]
+    "main" = [var.vms_resources["vm_main_resources"]["cores"], var.vms_resources["vm_main_resources"]["memory"], 
+    var.vms_resources["vm_main_resources"]["core_fraction"], var.vms_resources["vm_main_resources"]["size"]]
+    "replica" = [var.vms_resources["vm_replica_resources"]["cores"], var.vms_resources["vm_replica_resources"]["memory"],
+     var.vms_resources["vm_replica_resources"]["core_fraction"], var.vms_resources["vm_replica_resources"]["size"]]
     }
   name        = "${var.name_vm}-${each.key}"
   platform_id = var.vm_web_platform_id
