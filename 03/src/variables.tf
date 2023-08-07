@@ -75,5 +75,3 @@ variable "vms_resources" {
 }
 
 
-
-

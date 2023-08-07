@@ -1,7 +1,7 @@
 data "yandex_compute_image" "ubuntu2" {
   family = var.vm_web_family
 }
-resource "yandex_compute_instance" "web2" {
+resource "yandex_compute_instance" "database" {
   depends_on = [yandex_compute_instance.web, yandex_compute_instance.storage]
   for_each = {
     "main" = [var.vms_resources["vm_main_resources"]["cores"], var.vms_resources["vm_main_resources"]["memory"], 
