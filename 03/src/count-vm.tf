@@ -5,7 +5,6 @@ data "yandex_compute_image" "ubuntu" {
 resource "yandex_compute_instance" "web" {
   count       = 2
   name        = "${var.name_vm}-${count.index + 1}"
-#  name        = "${var.name_vm}"
   platform_id = var.vm_web_platform_id
   resources {
     cores         = 2

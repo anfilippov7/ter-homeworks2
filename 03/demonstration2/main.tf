@@ -14,8 +14,6 @@ provider "yandex" {
   zone      = var.default_zone
 }
 
-
-
 #создаем облачную сеть
 resource "yandex_vpc_network" "develop" {
   name = "develop"
@@ -68,7 +66,6 @@ resource "yandex_compute_instance" "example" {
   allow_stopping_for_update = true
 }
 
-
 resource "local_file" "hosts_cfg" {
   content = templatefile("${path.module}/hosts.tftpl",
 
@@ -76,7 +73,6 @@ resource "local_file" "hosts_cfg" {
 
   filename = "${abspath(path.module)}/hosts.cfg"
 }
-
 
 resource "null_resource" "web_hosts_provision" {
 #Ждем создания инстанса
