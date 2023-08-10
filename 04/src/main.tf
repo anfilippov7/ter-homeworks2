@@ -25,6 +25,7 @@ module "test-vm" {
   metadata = {
       user-data          = data.template_file.cloudinit.rendered #Для демонстрации №3
       serial-port-enable = 1
+  #    ssh-keys           = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
   }
 
 }
@@ -33,7 +34,7 @@ module "test-vm" {
 data "template_file" "cloudinit" {
  template = file("./cloud-init.yml")
  vars = {
-  vms_ssh_root_key = var.vms_ssh_root_key
+    vms_ssh_root_key = var.vms_ssh_root_key
  }
 }
 
