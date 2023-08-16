@@ -1,14 +1,17 @@
 #создаем облачную сеть
 module "vpc" {
   source        = "./vpc"
+  vpc_name = var.vpc_name
+  subnets = var.subnets_list
 }
 
 module "test-vm" {
   source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
   env_name        = "develop"
   network_id      = module.vpc.vpc_id
-  subnet_zones    = ["ru-central1-a"]
-  subnet_ids      = [module.vpc.subnet_vpc_id]
+#  subnet_zones    = ["ru-central1-a", "ru-central1-b", "ru-central1-c"]
+  subnet_zones    = [for subnet in var.subnets_list: subnet.zone]
+  subnet_ids      = module.vpc.subnet_vpc_id
   instance_name   = "web"
   instance_count  = 1
   image_family    = "ubuntu-2004-lts"
