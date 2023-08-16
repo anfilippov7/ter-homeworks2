@@ -63,3 +63,27 @@ variable "vpc_name" {
   description = "vpc_name"
 }
 
+variable "env_name" {
+  type        = string
+  default     = "develop"
+  description = "env_name"
+}
+
+variable "instance_name" {
+  type        = string
+  default     = "web"
+  description = "instance_name"
+}
+
+variable "instance_count" {
+  type        = number
+  default     = 1
+  description = "instance_count"
+}
+
+variable "image_family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "image_family"
+}
+

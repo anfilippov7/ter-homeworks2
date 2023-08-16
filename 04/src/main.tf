@@ -7,14 +7,13 @@ module "vpc" {
 
 module "test-vm" {
   source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
-  env_name        = "develop"
+  env_name        = var.env_name
   network_id      = module.vpc.vpc_id
-#  subnet_zones    = ["ru-central1-a", "ru-central1-b", "ru-central1-c"]
   subnet_zones    = [for subnet in var.subnets_list: subnet.zone]
   subnet_ids      = module.vpc.subnet_vpc_id
-  instance_name   = "web"
-  instance_count  = 1
-  image_family    = "ubuntu-2004-lts"
+  instance_name   = var.instance_name
+  instance_count  = var.instance_count
+  image_family    = var.image_family
   public_ip       = true
   
   metadata = {
