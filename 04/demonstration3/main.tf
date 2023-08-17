@@ -17,6 +17,25 @@ output "vault_example" {
   #функция nonsensitive позволяет узнать значение sensitive данных
 } 
 
+resource "vault_generic_secret" "create_secret" {
+  path = "secret/new"
+
+  data_json = <<EOT
+{
+  "keyone":   "valueone",
+  "netology": "student"
+}
+EOT
+}
+
+output "create_secret" {
+ value = nonsensitive(vault_generic_secret.create_secret.data)
+ sensitive = false
+
+} 
+
+
+
 #содержимое секретное. поглядеть можно через консоль
 
 #> data.vault_generic_secret.vault_example # а содержимое data то скрыто!
