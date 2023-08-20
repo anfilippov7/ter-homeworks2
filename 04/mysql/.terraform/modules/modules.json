@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"vpc_mysql_cluster","Source":"./vpc","Dir":"vpc"}]}
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"vpc_mysql_cluster","Source":"./vpc","Dir":"vpc"},{"Key":"vpc_user_database","Source":"./db_and_user","Dir":"db_and_user"}]}
