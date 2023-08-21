@@ -27,7 +27,7 @@ variable "default_cidr" {
 
 variable "HA" {
   type        = bool
-  default     = false
+  default     = true
   description = "count hoat cluster"
 }
 
@@ -93,12 +93,12 @@ variable "maintenance_window_hour" {
 
 variable "name_db" {
   type        = string
-  default     = "testdb"
+  default     = "test"
   description = "name database"
 }
 
 variable "name_user" {
   type        = string
-  default     = "aleksander"
+  default     = "app"
   description = "name user"
 }

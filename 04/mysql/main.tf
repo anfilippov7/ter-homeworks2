@@ -12,7 +12,6 @@ module "vpc_mysql_cluster" {
 
 #создаем пользователя и БД
 module "vpc_user_database" {
-#  depends_on         = [module.vpc_mysql_cluster]
   source             = "./db_and_user"
   cluster_id         = module.vpc_mysql_cluster.vpc_mysql_cluster_id
   name_db            = var.name_db 
