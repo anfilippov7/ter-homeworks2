@@ -6,7 +6,7 @@ module "vpc" {
 }
 
 module "test-vm" {
-  source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+  source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=4d05fab"
   env_name        = var.env_name
   network_id      = module.vpc.vpc_id
   subnet_zones    = [for subnet in var.subnets_list: subnet.zone]
