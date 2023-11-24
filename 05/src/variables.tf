@@ -87,3 +87,25 @@ variable "image_family" {
   description = "image_family"
 }
 
+variable "ip_address" {
+  type        = string
+  default     = "192.168.0.1"
+  description = "ip-адрес"
+
+  validation {
+    condition     = can(regex("^(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])(\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])){3}$", var.ip_address))
+    error_message = "Invalid ip address"
+  }
+}
+
+variable "ip_address_list" {
+  type        = list(string)
+  default     = ["192.168.0.1", "1.1.1.1", "1270.0.0.1"]
+  description = "список ip-адресов"
+
+  validation {
+    condition     = alltrue([for ip_address in var.ip_address_list:
+    can(regex("^(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])(\\.(25[0-5]|2[0-4][0-9]|[0-1][0-9]{2}|[0-9]{2}|[0-9])){3}$", ip_address)) ])
+    error_message = "Invalid ip address"
+  }
+}
